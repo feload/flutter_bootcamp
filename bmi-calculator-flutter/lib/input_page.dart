@@ -1,10 +1,12 @@
 import 'dart:ffi';
 
+import 'package:bmi_calculator/calculator_args.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'constants.dart';
 import 'constants.dart';
 import 'counter_card.dart';
 
@@ -15,14 +17,16 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
-  Color maleColor = inactiveColor;
+  Color maleColor = activeColor;
   Color femaleColor = inactiveColor;
+  Gender currentGender = Gender.male;
   int heightValue = 110;
   int weight = 60;
   int age = 25;
 
   void updateGenderColor(Gender gender){
     setState(() {
+      currentGender = gender;
       if (gender == Gender.male){
         maleColor = activeColor;
         femaleColor = inactiveColor;
@@ -157,6 +161,26 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: FlatButton(
+                    padding: EdgeInsets.all(20.0),
+                    color: Colors.pink,
+                    textColor: Colors.white,
+                    child: Text("Calculate", style: TextStyle(fontSize: 20.0),),
+                    onPressed: (){
+                      Navigator.pushNamed(context, '/results', arguments: CalculatorArgs(
+                        age: age,
+                        gender: currentGender,
+                        weight: weight,
+                        height: heightValue
+                      ));
+                    },
+                  )
+                )
+              ],
+            )
           ],
         )
     );

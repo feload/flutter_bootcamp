@@ -9,3 +9,9 @@ enum Gender {
   male,
   female
 }
+
+enum Result {
+  overweight,
+  normal,
+  underweight
+}
