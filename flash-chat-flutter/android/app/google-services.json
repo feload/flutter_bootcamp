@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "509043213324",
+    "firebase_url": "https://flash-chat-5569b.firebaseio.com",
+    "project_id": "flash-chat-5569b",
+    "storage_bucket": "flash-chat-5569b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509043213324:android:5168c85bf76d4b3cc49a29",
+        "android_client_info": {
+          "package_name": "mx.bubo.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509043213324-acv4du3u29f7uk3ilealskb4n5d4pilh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKCMouvw5cZuosDI3_SW-44NminvHCcXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509043213324-acv4du3u29f7uk3ilealskb4n5d4pilh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
