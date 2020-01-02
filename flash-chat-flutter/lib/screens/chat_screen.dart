@@ -23,18 +23,9 @@ class _ChatScreenState extends State<ChatScreen> {
     print(currentUser.email);
   }
 
-  void messagesStreams() async {
-    await for(var snapshot in _firestore.collection('messages').snapshots()) {
-      for(var message in snapshot.documents){
-        print(message.data);
-      }
-    }
-  }
-
   @override
   void initState() {
     getCurrentUser();
-    messagesStreams();
     super.initState();
   }
 
@@ -56,10 +47,38 @@ class _ChatScreenState extends State<ChatScreen> {
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
-        child: Column(
+        child: Container(
+          color: Colors.white,
+          child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder(
+              stream: _firestore.collection('messages').snapshots(),
+              builder: (BuildContext context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.lightBlueAccent,
+                    ),
+                  );
+                }
+
+                final messages = snapshot.data.documents;
+                List<Text> messageWidgets = [];
+
+                for (var message in messages) {
+                  final messageText = message['text'];
+                  messageWidgets.add(Text(messageText));
+                }
+
+                return Expanded(
+                  child: ListView(
+                    children: messageWidgets,
+                  ),
+                );
+              },
+            ),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -91,6 +110,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ],
+        ),
         ),
       ),
     );
